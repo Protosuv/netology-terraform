@@ -41,25 +41,25 @@ resource "aws_instance" "web" {
   }
 
 }
+//
+//resource "aws_instance" "proxy" {
+//  for_each = local.instances
+//  ami = each.value
+//  instance_type = each.key
+//}
 
-resource "aws_instance" "proxy" {
-  for_each = local.instances
-  ami = each.value
-  instance_type = each.key
-}
-
-resource "aws_instance" "fileserver" {
-  ami = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
-  tags = {
-    "project": "main"
-  }
-  lifecycle {
-    create_before_destroy = true
-    prevent_destroy = true
-    ignore_changes = [tags]
-  }
-}
+//resource "aws_instance" "fileserver" {
+//  ami = data.aws_ami.ubuntu.id
+//  instance_type = "t3.micro"
+//  tags = {
+//    "project": "main"
+//  }
+//  lifecycle {
+//    create_before_destroy = true
+//    prevent_destroy = true
+//    ignore_changes = [tags]
+//  }
+//}
 
 resource "aws_s3_bucket" "netology-test-bucket" {
   bucket = "netology-test-bucket"
