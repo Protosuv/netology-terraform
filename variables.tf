@@ -12,7 +12,7 @@ web_instance_type_map = {
 web_instance_count_map = {
   stage = 1
   prod = 2
-  default = 0
+  default = 1
 }
 instances = {
   "t3.micro" = data.aws_ami.ubuntu.id
